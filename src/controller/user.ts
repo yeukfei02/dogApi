@@ -39,7 +39,7 @@ export const getAllUser = async (ctx: Koa.Context, next: () => Promise<any>) => 
   ctx.response.status = 200;
   ctx.body = {
     message: 'get all user',
-    users: result
+    users: result,
   };
 };
 
@@ -55,6 +55,6 @@ export const getUserById = async (ctx: Koa.Context, next: () => Promise<any>) =>
   ctx.response.status = 200;
   ctx.body = {
     message: 'get user',
-    user: result
+    user: result,
   };
 };
