@@ -11,11 +11,7 @@ export const connectDB = async () => {
     username: 'donaldwu',
     password: '',
     database: 'donaldwu',
-    entities: [
-      DogUser,
-      Dog,
-      DogImages
-    ],
+    entities: [DogUser, Dog, DogImages],
     synchronize: true,
   });
 };

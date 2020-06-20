@@ -23,7 +23,7 @@ export const getBreedsByName = async (name: string) => {
 
   const dog = dogRepository.find({ name: name });
   return dog;
-}
+};
 
 export const createDogImages = async (item: any) => {
   const dogImagesRepository = getRepository(DogImages);
@@ -33,4 +33,4 @@ export const createDogImages = async (item: any) => {
   dogImages.height = item.height;
   dogImages.url = item.url;
   await dogImagesRepository.save(dogImages);
-}
+};
