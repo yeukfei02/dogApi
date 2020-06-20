@@ -7,6 +7,9 @@ import * as compress from 'koa-compress';
 import * as bodyParser from 'koa-bodyparser';
 import * as json from 'koa-json';
 
+import * as env from 'dotenv';
+env.config();
+
 import mainRoutes from './routes/main';
 import userRoutes from './routes/user';
 
