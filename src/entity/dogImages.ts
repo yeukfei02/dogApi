@@ -14,6 +14,9 @@ export class DogImages {
   @Column({ nullable: true })
   url: string;
 
+  @Column()
+  dogUserId: number;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: string;
 

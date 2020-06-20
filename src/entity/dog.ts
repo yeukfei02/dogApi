@@ -29,6 +29,9 @@ export class Dog {
   @Column({ type: 'jsonb', nullable: true })
   weight: object;
 
+  @Column()
+  dogUserId: number;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: string;
 

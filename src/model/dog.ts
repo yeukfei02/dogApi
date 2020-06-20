@@ -3,7 +3,7 @@ import { getRepository } from 'typeorm';
 import { Dog } from '../entity/dog';
 import { DogImages } from '../entity/dogImages';
 
-export const createDog = async (item: any) => {
+export const createDog = async (item: any, dogUserId: number) => {
   const dogRepository = getRepository(Dog);
 
   const dog = new Dog();
@@ -15,6 +15,7 @@ export const createDog = async (item: any) => {
   dog.origin = item.origin;
   dog.temperament = item.temperament;
   dog.weight = item.weight;
+  dog.dogUserId = dogUserId;
   await dogRepository.save(dog);
 };
 
@@ -25,12 +26,13 @@ export const getBreedsByName = async (name: string) => {
   return dog;
 };
 
-export const createDogImages = async (item: any) => {
+export const createDogImages = async (item: any, dogUserId: number) => {
   const dogImagesRepository = getRepository(DogImages);
 
   const dogImages = new DogImages();
   dogImages.width = item.width;
   dogImages.height = item.height;
   dogImages.url = item.url;
+  dogImages.dogUserId = dogUserId;
   await dogImagesRepository.save(dogImages);
 };
