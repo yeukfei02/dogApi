@@ -1,7 +1,7 @@
 import { createConnection } from 'typeorm';
 import { DogUser } from '../entity/dogUser';
 import { Dog } from '../entity/dog';
-import { DogImages } from '../entity/DogImages';
+import { DogImages } from '../entity/dogImages';
 
 export const connectDB = async () => {
   await createConnection({
