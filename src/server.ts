@@ -10,6 +10,8 @@ import * as json from 'koa-json';
 import mainRoutes from './routes/main';
 import userRoutes from './routes/user';
 
+import { connectDB } from './db/db';
+
 const app = new Koa();
 const port = process.env.PORT || 3000;
 
@@ -33,6 +35,8 @@ app.use(
 );
 app.use(bodyParser());
 app.use(json());
+
+connectDB();
 
 // main route
 app.use(mainRoutes.routes());
