@@ -12,6 +12,7 @@ env.config();
 
 import mainRoutes from './routes/main';
 import userRoutes from './routes/user';
+import dogRoutes from './routes/dog';
 
 import { connectDB } from './db/db';
 
@@ -48,6 +49,10 @@ app.use(mainRoutes.routes()).use(mainRoutes.allowedMethods());
 // user route
 app.use(userRoutes.routes());
 app.use(userRoutes.routes()).use(userRoutes.allowedMethods());
+
+// dog route
+app.use(dogRoutes.routes());
+app.use(dogRoutes.routes()).use(dogRoutes.allowedMethods());
 
 app.listen(3000, () => {
   console.log(`server is listening on port: ${port}`);
