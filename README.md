@@ -2,7 +2,7 @@
 
 dogApi
 
-documentation: https://documenter.getpostman.com/view/3827865/SzezdXuc?version=latest
+documentation: https://documenter.getpostman.com/view/3827865/Szzn7H98?version=latest
 
 ## Requirement:
  - install yarn
