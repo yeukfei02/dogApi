@@ -42,15 +42,15 @@ app.use(json());
 
 connectDB();
 
-// main route
+// main routes
 app.use(mainRoutes.routes());
 app.use(mainRoutes.routes()).use(mainRoutes.allowedMethods());
 
-// user route
+// user routes
 app.use(userRoutes.routes());
 app.use(userRoutes.routes()).use(userRoutes.allowedMethods());
 
-// dog route
+// dog routes
 app.use(dogRoutes.routes());
 app.use(dogRoutes.routes()).use(dogRoutes.allowedMethods());
 
