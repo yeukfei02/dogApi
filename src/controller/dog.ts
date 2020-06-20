@@ -58,7 +58,7 @@ export const getAllBreeds = async (ctx: Koa.Context, next: () => Promise<any>) =
 
   if (userLoginStatus) {
     const dogUserId = ctx.params.dogUserId;
-    
+
     const limit = ctx.request.query.limit;
     const page = ctx.request.query.page;
 
