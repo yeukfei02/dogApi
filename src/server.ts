@@ -54,6 +54,6 @@ app.use(userRoutes.routes()).use(userRoutes.allowedMethods());
 app.use(dogRoutes.routes());
 app.use(dogRoutes.routes()).use(dogRoutes.allowedMethods());
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log(`server is listening on port: ${port}`);
 });
