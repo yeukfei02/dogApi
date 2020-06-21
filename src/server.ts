@@ -10,11 +10,9 @@ import * as json from 'koa-json';
 import * as env from 'dotenv';
 env.config();
 
-import mainRoutes from './routes/main';
-import userRoutes from './routes/user';
-import dogRoutes from './routes/dog';
-
 import { connectDB } from './db/db';
+
+import router from './routes/routes';
 
 const app = new Koa();
 const port = process.env.PORT || 3000;
@@ -42,17 +40,7 @@ app.use(json());
 
 connectDB();
 
-// main routes
-app.use(mainRoutes.routes());
-app.use(mainRoutes.routes()).use(mainRoutes.allowedMethods());
-
-// user routes
-app.use(userRoutes.routes());
-app.use(userRoutes.routes()).use(userRoutes.allowedMethods());
-
-// dog routes
-app.use(dogRoutes.routes());
-app.use(dogRoutes.routes()).use(dogRoutes.allowedMethods());
+app.use(router());
 
 app.listen(port, () => {
   console.log(`server is listening on port: ${port}`);
