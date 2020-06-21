@@ -3,7 +3,7 @@ import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 
-import * as userModel from '../model/dogUser';
+import * as userModel from '../model/user';
 
 export const signup = async (ctx: Koa.Context, next: () => Promise<any>) => {
   const email = ctx.request.body.email;
@@ -11,7 +11,6 @@ export const signup = async (ctx: Koa.Context, next: () => Promise<any>) => {
 
   if (email && password) {
     const record = await userModel.getUserByEmail(email);
-    console.log('record = ', record);
     if (record.length === 0) {
       await userModel.createUser(email, password);
 
