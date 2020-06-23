@@ -1,10 +1,10 @@
-import { getRepository } from 'typeorm';
+import { getDogUserRepository } from '../repository/userRepository';
 
 import { DogUser } from '../entity/dogUser';
 
-export const createUser = async (email: string, password: string) => {
-  const dogUserRepository = getRepository(DogUser);
+const dogUserRepository = getDogUserRepository();
 
+export const createUser = async (email: string, password: string) => {
   const dogUser = new DogUser();
   dogUser.email = email;
   dogUser.password = password;
@@ -12,22 +12,16 @@ export const createUser = async (email: string, password: string) => {
 };
 
 export const getUserByEmail = async (email: string) => {
-  const dogUserRepository = getRepository(DogUser);
-
   const dogUser = dogUserRepository.find({ email: email });
   return dogUser;
 };
 
 export const getAllUser = async () => {
-  const dogUserRepository = getRepository(DogUser);
-
   const dogUserList = dogUserRepository.find({});
   return dogUserList;
 };
 
 export const getUserById = async (id: number) => {
-  const dogUserRepository = getRepository(DogUser);
-
   const dogUser = dogUserRepository.findOne(id);
   return dogUser;
 };

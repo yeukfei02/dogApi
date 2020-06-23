@@ -1,11 +1,13 @@
-import { getRepository } from 'typeorm';
+import { getDogRepository } from '../repository/dogRepository';
+import { getDogImagesRepository } from '../repository/dogImagesRepository';
 
 import { Dog } from '../entity/dog';
 import { DogImages } from '../entity/dogImages';
 
-export const createDog = async (item: any, dogUserId: number) => {
-  const dogRepository = getRepository(Dog);
+const dogRepository = getDogRepository();
+const dogImagesRepository = getDogImagesRepository();
 
+export const createDog = async (item: any, dogUserId: number) => {
   const dog = new Dog();
   dog.bredFor = item.bred_for;
   dog.breedGroup = item.breed_group;
@@ -20,15 +22,11 @@ export const createDog = async (item: any, dogUserId: number) => {
 };
 
 export const getBreedsByName = async (name: string) => {
-  const dogRepository = getRepository(Dog);
-
   const dog = dogRepository.find({ name: name });
   return dog;
 };
 
 export const createDogImages = async (item: any, dogUserId: number) => {
-  const dogImagesRepository = getRepository(DogImages);
-
   const dogImages = new DogImages();
   dogImages.width = item.width;
   dogImages.height = item.height;
