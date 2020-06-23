@@ -1,7 +1,7 @@
 import * as Koa from 'koa';
 import axios from 'axios';
 
-import * as dogModel from '../model/dog';
+import * as dogService from '../service/dog';
 
 import { checkUserLogin } from '../common/common';
 
@@ -65,9 +65,9 @@ export const getAllBreeds = async (ctx: Koa.Context, next: () => Promise<any>) =
     const result = await getAllBreedsRequest(limit, page);
     if (result) {
       result.forEach(async (item: any, i: number) => {
-        const existingBreeds = await dogModel.getBreedsByName(item.name);
+        const existingBreeds = await dogService.getBreedsByName(item.name);
         if (existingBreeds.length === 0) {
-          await dogModel.createDog(item, dogUserId);
+          await dogService.createDog(item, dogUserId);
         }
       });
 
@@ -97,7 +97,7 @@ export const getAllDogImages = async (ctx: Koa.Context, next: () => Promise<any>
     const result = await getAllDogImagesRequest(limit, page);
     if (result) {
       result.forEach(async (item: any, i: number) => {
-        await dogModel.createDogImages(item, dogUserId);
+        await dogService.createDogImages(item, dogUserId);
       });
 
       const formattedResult = result.map((item: any, i: number) => {
