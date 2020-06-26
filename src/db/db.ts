@@ -1,7 +1,7 @@
 import { createConnection } from 'typeorm';
-import { DogUser } from '../entity/dogUser';
-import { Dog } from '../entity/dog';
-import { DogImages } from '../entity/dogImages';
+import { DogUser } from '../entity/DogUser';
+import { Dog } from '../entity/Dog';
+import { DogImages } from '../entity/DogImages';
 
 export const connectDB = async () => {
   const environment = process.env.NODE_ENV;
