@@ -1,7 +1,7 @@
 import { getRepository } from 'typeorm';
 
-import { Dog } from '../entity/dog';
-import { DogImages } from '../entity/dogImages';
+import { Dog } from '../entity/Dog';
+import { DogImages } from '../entity/DogImages';
 
 export const createDog = async (item: any, dogUserId: number) => {
   const dogRepository = getRepository(Dog);

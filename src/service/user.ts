@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 
-import { DogUser } from '../entity/dogUser';
+import { DogUser } from '../entity/DogUser';
 
 export const createUser = async (email: string, password: string) => {
   const dogUserRepository = getRepository(DogUser);
