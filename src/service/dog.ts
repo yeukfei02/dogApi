@@ -22,7 +22,7 @@ export const createDog = async (item: any, dogUserId: number) => {
 export const getBreedsByName = async (name: string) => {
   const dogRepository = getRepository(Dog);
 
-  const dog = dogRepository.find({ name: name });
+  const dog = await dogRepository.find({ name: name });
   return dog;
 };
 
