@@ -1,9 +1,5 @@
 import { createConnection } from 'typeorm';
 
-import { DogUser } from '../entity/DogUser';
-import { Dog } from '../entity/Dog';
-import { DogImages } from '../entity/DogImages';
-
 export const connectDB = async () => {
   const environment = process.env.NODE_ENV;
   if (environment === 'development') {
@@ -14,7 +10,7 @@ export const connectDB = async () => {
       username: 'donaldwu',
       password: '',
       database: 'donaldwu',
-      entities: [DogUser, Dog, DogImages],
+      entities: [process.env.PWD + '/src/entity/*.ts'],
       synchronize: true,
     });
   } else {
@@ -25,7 +21,7 @@ export const connectDB = async () => {
       username: 'donaldwu',
       password: '',
       database: 'donaldwu',
-      entities: [DogUser, Dog, DogImages],
+      entities: [process.env.PWD + '/src/entity/*.ts'],
       synchronize: true,
     });
   }
