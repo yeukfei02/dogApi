@@ -5,5 +5,4 @@ export const getMain = async (ctx: Koa.Context, next: () => Promise<any>) => {
   ctx.body = {
     message: 'dogApi',
   };
-  await next();
 };

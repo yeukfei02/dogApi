@@ -14,20 +14,20 @@ export const createUser = async (email: string, password: string) => {
 export const getUserByEmail = async (email: string) => {
   const dogUserRepository = getRepository(DogUser);
 
-  const dogUser = dogUserRepository.find({ email: email });
+  const dogUser = await dogUserRepository.findOne({ email: email });
   return dogUser;
 };
 
 export const getAllUser = async () => {
   const dogUserRepository = getRepository(DogUser);
 
-  const dogUserList = dogUserRepository.find({});
+  const dogUserList = await dogUserRepository.find({});
   return dogUserList;
 };
 
 export const getUserById = async (id: number) => {
   const dogUserRepository = getRepository(DogUser);
 
-  const dogUser = dogUserRepository.findOne(id);
+  const dogUser = await dogUserRepository.findOne(id);
   return dogUser;
 };

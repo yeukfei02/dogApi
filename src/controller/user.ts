@@ -11,7 +11,7 @@ export const signup = async (ctx: Koa.Context, next: () => Promise<any>) => {
 
   if (email && password) {
     const record = await userService.getUserByEmail(email);
-    if (record.length === 0) {
+    if (!record) {
       await userService.createUser(email, password);
 
       ctx.response.status = 201;
@@ -33,7 +33,7 @@ export const login = async (ctx: Koa.Context, next: () => Promise<any>) => {
 
   if (email && password) {
     const user = await userService.getUserByEmail(email);
-    const userPasswordFromDB = user[0].password;
+    const userPasswordFromDB = user.password;
 
     if (bcrypt.compareSync(password, userPasswordFromDB)) {
       const token = jwt.sign(
