@@ -3,6 +3,8 @@ import { createConnection } from 'typeorm';
 export const connectDB = async () => {
   const environment = process.env.NODE_ENV;
   if (environment === 'development') {
+    const entityFolderPath = process.env.PWD + '/src/entity/*.ts';
+
     await createConnection({
       type: 'postgres',
       host: 'localhost',
@@ -10,18 +12,20 @@ export const connectDB = async () => {
       username: 'donaldwu',
       password: '',
       database: 'donaldwu',
-      entities: [process.env.PWD + '/src/entity/*.ts'],
+      entities: [entityFolderPath],
       synchronize: true,
     });
   } else {
+    const entityFolderPath = process.env.PWD + '/dist/entity/*.js';
+
     await createConnection({
       type: 'postgres',
-      host: 'localhost',
+      host: 'postgres',
       port: 5432,
       username: 'donaldwu',
-      password: '',
+      password: 'donaldwu',
       database: 'donaldwu',
-      entities: [process.env.PWD + '/src/entity/*.ts'],
+      entities: [entityFolderPath],
       synchronize: true,
     });
   }
