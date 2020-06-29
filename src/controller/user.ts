@@ -33,26 +33,33 @@ export const login = async (ctx: Koa.Context, next: () => Promise<any>) => {
 
   if (email && password) {
     const user = await userService.getUserByEmail(email);
-    const userPasswordFromDB = user.password;
+    if (user) {
+      const userPasswordFromDB = user.password;
 
-    if (bcrypt.compareSync(password, userPasswordFromDB)) {
-      const token = jwt.sign(
-        {
-          id: uuidv4(),
-        },
-        process.env.JWT_SECRET,
-        { expiresIn: '1d' },
-      );
+      if (bcrypt.compareSync(password, userPasswordFromDB)) {
+        const token = jwt.sign(
+          {
+            id: uuidv4(),
+          },
+          process.env.JWT_SECRET,
+          { expiresIn: '1d' },
+        );
 
-      ctx.response.status = 200;
-      ctx.body = {
-        message: 'login',
-        token: token,
-      };
+        ctx.response.status = 200;
+        ctx.body = {
+          message: 'login',
+          token: token,
+        };
+      } else {
+        ctx.response.status = 400;
+        ctx.body = {
+          message: 'login error, wrong password',
+        };
+      }
     } else {
       ctx.response.status = 400;
       ctx.body = {
-        message: 'login error, wrong password',
+        message: 'login error, no user found',
       };
     }
   }
