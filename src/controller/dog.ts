@@ -3,8 +3,6 @@ import axios from 'axios';
 
 import * as dogService from '../service/dog';
 
-import { checkUserLogin } from '../common/common';
-
 const ROOT_URL = `https://api.thedogapi.com/v1`;
 
 async function getAllBreedsRequest(limit: number, page: number) {
@@ -54,71 +52,53 @@ async function getAllDogImagesRequest(limit: number, page: number) {
 }
 
 export const getAllBreeds = async (ctx: Koa.Context, next: () => Promise<any>) => {
-  const userLoginStatus = await checkUserLogin(ctx);
+  const dogUserId = ctx.params.dogUserId;
 
-  if (userLoginStatus) {
-    const dogUserId = ctx.params.dogUserId;
+  const limit = ctx.request.query.limit;
+  const page = ctx.request.query.page;
 
-    const limit = ctx.request.query.limit;
-    const page = ctx.request.query.page;
+  const result = await getAllBreedsRequest(limit, page);
+  if (result) {
+    result.forEach(async (item: any, i: number) => {
+      const existingBreeds = await dogService.getBreedsByName(item.name);
+      if (existingBreeds.length === 0) {
+        await dogService.createDog(item, dogUserId);
+      }
+    });
 
-    const result = await getAllBreedsRequest(limit, page);
-    if (result) {
-      result.forEach(async (item: any, i: number) => {
-        const existingBreeds = await dogService.getBreedsByName(item.name);
-        if (existingBreeds.length === 0) {
-          await dogService.createDog(item, dogUserId);
-        }
-      });
-
-      ctx.response.status = 200;
-      ctx.response.body = {
-        message: `get dog breeds`,
-        result: result,
-      };
-    }
-  } else {
-    ctx.response.status = 400;
+    ctx.response.status = 200;
     ctx.response.body = {
-      message: `bearer token wrong or missing`,
+      message: `get dog breeds`,
+      result: result,
     };
   }
 };
 
 export const getAllDogImages = async (ctx: Koa.Context, next: () => Promise<any>) => {
-  const userLoginStatus = await checkUserLogin(ctx);
+  const dogUserId = ctx.params.dogUserId;
 
-  if (userLoginStatus) {
-    const dogUserId = ctx.params.dogUserId;
+  const limit = ctx.request.query.limit;
+  const page = ctx.request.query.page;
 
-    const limit = ctx.request.query.limit;
-    const page = ctx.request.query.page;
+  const result = await getAllDogImagesRequest(limit, page);
+  if (result) {
+    result.forEach(async (item: any, i: number) => {
+      await dogService.createDogImages(item, dogUserId);
+    });
 
-    const result = await getAllDogImagesRequest(limit, page);
-    if (result) {
-      result.forEach(async (item: any, i: number) => {
-        await dogService.createDogImages(item, dogUserId);
-      });
-
-      const formattedResult = result.map((item: any, i: number) => {
-        const obj = {
-          width: item.width,
-          height: item.height,
-          url: item.url,
-        };
-        return obj;
-      });
-
-      ctx.response.status = 200;
-      ctx.response.body = {
-        message: `get dog images`,
-        result: formattedResult,
+    const formattedResult = result.map((item: any, i: number) => {
+      const obj = {
+        width: item.width,
+        height: item.height,
+        url: item.url,
       };
-    }
-  } else {
-    ctx.response.status = 400;
+      return obj;
+    });
+
+    ctx.response.status = 200;
     ctx.response.body = {
-      message: `bearer token wrong or missing`,
+      message: `get dog images`,
+      result: formattedResult,
     };
   }
 };

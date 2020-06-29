@@ -4,7 +4,9 @@ const router = new Router();
 
 import * as dogController from '../controller/dog';
 
-router.get('/api/dog/breeds/:dogUserId', dogController.getAllBreeds);
-router.get('/api/dog/images/:dogUserId', dogController.getAllDogImages);
+import { isUserLoggedIn } from '../middleware/middleware';
+
+router.get('/api/dog/breeds/:dogUserId', isUserLoggedIn, dogController.getAllBreeds);
+router.get('/api/dog/images/:dogUserId', isUserLoggedIn, dogController.getAllDogImages);
 
 export default router;
