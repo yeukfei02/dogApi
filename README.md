@@ -29,16 +29,11 @@ $ yarn run lint
 ```
 every time table change needs to run:
 
-$ cd /src/prisma
-
-// update schema.prisma from existing database
-$ npx prisma introspect
-
-// generate artifacts (e.g. Prisma Client)
-$ npx prisma generate
+// update schema.prisma from existing database, generate artifacts (e.g. Prisma Client)
+$ yarn run generate:prisma
 
 // format schema.prisma
-$ npx prisma format
+$ yarn run format:prisma
 
 // show experimental command
 $ npx prisma --experimental

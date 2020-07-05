@@ -19,7 +19,7 @@ services:
     container_name: postgres
     image: postgres:12.1
     volumes:
-      - ./src/prisma/schema.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./prisma/schema.sql:/docker-entrypoint-initdb.d/dump.sql
     ports:
       - 5432:5432
     environment:
