@@ -81,7 +81,7 @@ export const getAllUser = async (ctx: Koa.Context, next: () => Promise<any>) => 
 };
 
 export const getUserById = async (ctx: Koa.Context, next: () => Promise<any>) => {
-  const id = ctx.params.id;
+  const id = parseInt(ctx.params.id, 10);
   const user = await userService.getUserById(id);
 
   let result = {};

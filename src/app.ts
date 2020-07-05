@@ -10,8 +10,6 @@ import * as json from 'koa-json';
 import * as env from 'dotenv';
 env.config();
 
-import { connectDB } from './db/db';
-
 import router from './routes/routes';
 
 const app = new Koa();
@@ -37,8 +35,6 @@ app.use(
 );
 app.use(bodyParser());
 app.use(json());
-
-connectDB();
 
 app.use(router());
 
