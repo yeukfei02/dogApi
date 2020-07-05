@@ -1,33 +1,36 @@
-import { getRepository } from 'typeorm';
+import { PrismaClient } from '@prisma/client';
 
-import { DogUser } from '../entity/DogUser';
+const prisma = new PrismaClient();
 
 export const createUser = async (email: string, password: string) => {
-  const dogUserRepository = getRepository(DogUser);
-
-  const dogUser = new DogUser();
-  dogUser.email = email;
-  dogUser.password = password;
-  await dogUserRepository.save(dogUser);
+  await prisma.dog_user.create({
+    data: {
+      email: email,
+      password: password,
+    },
+  });
 };
 
 export const getUserByEmail = async (email: string) => {
-  const dogUserRepository = getRepository(DogUser);
-
-  const dogUser = await dogUserRepository.findOne({ email: email });
-  return dogUser;
+  const dogUser = await prisma.dog_user.findMany({
+    where: {
+      email: email,
+    },
+    take: 1,
+  });
+  return dogUser[0];
 };
 
 export const getAllUser = async () => {
-  const dogUserRepository = getRepository(DogUser);
-
-  const dogUserList = await dogUserRepository.find({});
+  const dogUserList = await prisma.dog_user.findMany();
   return dogUserList;
 };
 
 export const getUserById = async (id: number) => {
-  const dogUserRepository = getRepository(DogUser);
-
-  const dogUser = await dogUserRepository.findOne(id);
+  const dogUser = await prisma.dog_user.findOne({
+    where: {
+      id: id,
+    },
+  });
   return dogUser;
 };

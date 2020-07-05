@@ -1,38 +1,40 @@
-import { getRepository } from 'typeorm';
+import { PrismaClient } from '@prisma/client';
 
-import { Dog } from '../entity/Dog';
-import { DogImages } from '../entity/DogImages';
+const prisma = new PrismaClient();
 
 export const createDog = async (item: any, dogUserId: number) => {
-  const dogRepository = getRepository(Dog);
-
-  const dog = new Dog();
-  dog.bredFor = item.bred_for;
-  dog.breedGroup = item.breed_group;
-  dog.height = item.height;
-  dog.lifeSpan = item.life_span;
-  dog.name = item.name;
-  dog.origin = item.origin;
-  dog.temperament = item.temperament;
-  dog.weight = item.weight;
-  dog.dogUserId = dogUserId;
-  await dogRepository.save(dog);
+  await prisma.dog.create({
+    data: {
+      bredFor: item.bredFor,
+      breedGroup: item.breed_group,
+      height: item.height,
+      lifeSpan: item.life_span,
+      name: item.name,
+      origin: item.origin,
+      temperament: item.temperament,
+      weight: item.weight,
+      dogUserId: dogUserId,
+    },
+  });
 };
 
 export const getBreedsByName = async (name: string) => {
-  const dogRepository = getRepository(Dog);
-
-  const dog = await dogRepository.find({ name: name });
-  return dog;
+  const dog = await prisma.dog.findMany({
+    where: {
+      name: name,
+    },
+    take: 1,
+  });
+  return dog[0];
 };
 
 export const createDogImages = async (item: any, dogUserId: number) => {
-  const dogImagesRepository = getRepository(DogImages);
-
-  const dogImages = new DogImages();
-  dogImages.width = item.width;
-  dogImages.height = item.height;
-  dogImages.url = item.url;
-  dogImages.dogUserId = dogUserId;
-  await dogImagesRepository.save(dogImages);
+  await prisma.dog_images.create({
+    data: {
+      width: item.width.toString(),
+      height: item.height.toString(),
+      url: item.url,
+      dogUserId: dogUserId,
+    },
+  });
 };

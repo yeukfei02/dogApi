@@ -26,6 +26,24 @@ $ yarn run test
 $ yarn run lint
 ```
 
+```
+every time table change needs to run:
+
+$ cd /src/prisma
+
+// update schema.prisma from existing database
+$ npx prisma introspect
+
+// generate artifacts (e.g. Prisma Client)
+$ npx prisma generate
+
+// format schema.prisma
+$ npx prisma format
+
+// show experimental command
+$ npx prisma --experimental
+```
+
 ## Docker:
 
 - Dockerfile

@@ -52,7 +52,7 @@ async function getAllDogImagesRequest(limit: number, page: number) {
 }
 
 export const getAllBreeds = async (ctx: Koa.Context, next: () => Promise<any>) => {
-  const dogUserId = ctx.params.dogUserId;
+  const dogUserId = parseInt(ctx.params.dogUserId, 10);
 
   const limit = ctx.request.query.limit;
   const page = ctx.request.query.page;
@@ -61,7 +61,7 @@ export const getAllBreeds = async (ctx: Koa.Context, next: () => Promise<any>) =
   if (result) {
     result.forEach(async (item: any, i: number) => {
       const existingBreeds = await dogService.getBreedsByName(item.name);
-      if (existingBreeds.length === 0) {
+      if (!existingBreeds) {
         await dogService.createDog(item, dogUserId);
       }
     });
@@ -75,7 +75,7 @@ export const getAllBreeds = async (ctx: Koa.Context, next: () => Promise<any>) =
 };
 
 export const getAllDogImages = async (ctx: Koa.Context, next: () => Promise<any>) => {
-  const dogUserId = ctx.params.dogUserId;
+  const dogUserId = parseInt(ctx.params.dogUserId, 10);
 
   const limit = ctx.request.query.limit;
   const page = ctx.request.query.page;
