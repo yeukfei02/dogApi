@@ -8,34 +8,34 @@ datasource postgresql {
 }
 
 model dog {
+  id          Int      @default(autoincrement()) @id
   bredFor     String?
   breedGroup  String?
-  createdAt   DateTime @default(now())
-  dogUserId   Int
   height      Json?
-  id          Int      @default(autoincrement()) @id
   lifeSpan    String?
   name        String?
   origin      String?
   temperament String?
-  updatedAt   DateTime @default(now())
   weight      Json?
+  dogUserId   Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
 }
 
 model dog_images {
-  createdAt DateTime @default(now())
-  dogUserId Int
-  height    String?
   id        Int      @default(autoincrement()) @id
-  updatedAt DateTime @default(now())
-  url       String?
   width     String?
+  height    String?
+  url       String?
+  dogUserId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }
 
 model dog_user {
-  createdAt DateTime @default(now())
-  email     String
   id        Int      @default(autoincrement()) @id
+  email     String
   password  String
+  createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }
