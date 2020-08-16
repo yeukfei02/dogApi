@@ -13,9 +13,7 @@
                 "node_modules/",
                 "src/types/*"
             ]
-        },
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
+        }
     },
     "include": [
         "src/**/*"
