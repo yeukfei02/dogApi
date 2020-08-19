@@ -471,15 +471,15 @@
   dependencies:
     vary "^1.1.2"
 
-"@prisma/cli@^2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@prisma/cli/-/cli-2.4.1.tgz#95f6cae48ff19c6177bb9f85816b27e1ffe5af53"
-  integrity sha512-vAOBnouBgCYndXmTcGxanfmhVWUCpwr3akBXiQH+ZKzTYf/pwSsWYpeaXNQfVtUEJEQ0kumfLGdq6ZXnfX//aA==
+"@prisma/cli@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@prisma/cli/-/cli-2.5.0.tgz#a6d8c0ebd79230900d44d2eebcf62f02b3612214"
+  integrity sha512-yqGhDYH8lxIfT/1gjg6VVb2THS+k0cAbnoR8UENNrAAUWGzroZSvz+ECMsVinKshTUHJkD69yzi9i/nDqAODSw==
 
-"@prisma/client@^2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-2.4.1.tgz#840d0905e9d05d84313e333a3e0370df3b9815fe"
-  integrity sha512-13aphZb34ws8GuRxVsmgiQmUJRfcnnb5/Jy78/ZkpLyCk5ZpchO/Rr1KNiF/cfLHprdKOjSvUzthcx+tubaA2A==
+"@prisma/client@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-2.5.0.tgz#dba5ee40497f458dc0f1057fa4a0b6675548e443"
+  integrity sha512-rsgbImSVMBATLSSZEgP7pWpqV2iylDJWM2zjmL980IjTBgy63alDr0RyoOkdt8oVw4OyJW0uYpxAU2Z9bXZU9A==
   dependencies:
     pkg-up "^3.1.0"
 
@@ -2479,6 +2479,11 @@ getpass@^0.1.1:
   integrity sha1-Xv+OPmhNVprkyysSgmBOi6YhSfo=
   dependencies:
     assert-plus "^1.0.0"
+
+git-cz@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/git-cz/-/git-cz-4.7.0.tgz#fb8011c84da422612b8be61d609664df976a6c9a"
+  integrity sha512-+igNdYIuGe8zncCb6gRxEfZ14Ru0SrI+7rXOueadxBWEn3zkBd3xyTE1RjG6qM3GY+0U7vN8DmT7o9CRcyR++A==
 
 glob-parent@^5.0.0, glob-parent@~5.1.0:
   version "5.1.1"
