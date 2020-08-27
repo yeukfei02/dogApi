@@ -1,7 +1,7 @@
 import * as Koa from 'koa';
 import * as jwt from 'jsonwebtoken';
 
-export const isUserLoggedIn = async (ctx: Koa.Context, next: () => Promise<any>) => {
+export const isUserLoggedIn = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
   let token = '';
   if (ctx.request.headers.authorization) {
     token = ctx.request.headers.authorization.substring(7);

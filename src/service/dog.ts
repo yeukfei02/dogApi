@@ -1,8 +1,8 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, dog } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const createDog = async (item: any, dogUserId: number) => {
+export const createDog = async (item: any, dogUserId: number): Promise<void> => {
   await prisma.dog.create({
     data: {
       bredFor: item.bredFor,
@@ -18,7 +18,7 @@ export const createDog = async (item: any, dogUserId: number) => {
   });
 };
 
-export const getBreedsByName = async (name: string) => {
+export const getBreedsByName = async (name: string): Promise<dog> => {
   const dog = await prisma.dog.findMany({
     where: {
       name: name,
@@ -28,7 +28,7 @@ export const getBreedsByName = async (name: string) => {
   return dog[0];
 };
 
-export const createDogImages = async (item: any, dogUserId: number) => {
+export const createDogImages = async (item: any, dogUserId: number): Promise<void> => {
   await prisma.dog_images.create({
     data: {
       width: item.width.toString(),

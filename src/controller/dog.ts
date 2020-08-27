@@ -51,7 +51,7 @@ async function getAllDogImagesRequest(limit: number, page: number) {
   return response.data;
 }
 
-export const getAllBreeds = async (ctx: Koa.Context, next: () => Promise<any>) => {
+export const getAllBreeds = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
   const dogUserId = parseInt(ctx.params.dogUserId, 10);
 
   const limit = ctx.request.query.limit;
@@ -74,7 +74,7 @@ export const getAllBreeds = async (ctx: Koa.Context, next: () => Promise<any>) =
   }
 };
 
-export const getAllDogImages = async (ctx: Koa.Context, next: () => Promise<any>) => {
+export const getAllDogImages = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
   const dogUserId = parseInt(ctx.params.dogUserId, 10);
 
   const limit = ctx.request.query.limit;
