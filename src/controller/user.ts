@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import * as userService from '../service/user';
 
-export const signup = async (ctx: Koa.Context, next: () => Promise<any>) => {
+export const signup = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
   const email = ctx.request.body.email;
   const password = bcrypt.hashSync(ctx.request.body.password, 10);
 
@@ -27,7 +27,7 @@ export const signup = async (ctx: Koa.Context, next: () => Promise<any>) => {
   }
 };
 
-export const login = async (ctx: Koa.Context, next: () => Promise<any>) => {
+export const login = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
   const email = ctx.request.body.email;
   const password = ctx.request.body.password;
 
@@ -65,7 +65,7 @@ export const login = async (ctx: Koa.Context, next: () => Promise<any>) => {
   }
 };
 
-export const getAllUser = async (ctx: Koa.Context, next: () => Promise<any>) => {
+export const getAllUser = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
   const userList = await userService.getAllUser();
 
   let result: any[] = [];
@@ -80,7 +80,7 @@ export const getAllUser = async (ctx: Koa.Context, next: () => Promise<any>) => 
   };
 };
 
-export const getUserById = async (ctx: Koa.Context, next: () => Promise<any>) => {
+export const getUserById = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
   const id = parseInt(ctx.params.id, 10);
   const user = await userService.getUserById(id);
 
