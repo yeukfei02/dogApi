@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource postgresql {
+  provider = "postgresql"
+  url = "***"
+}
+
+model dog {
+  id          Int      @default(autoincrement()) @id
+  bredFor     String?
+  breedGroup  String?
+  height      Json?
+  lifeSpan    String?
+  name        String?
+  origin      String?
+  temperament String?
+  weight      Json?
+  dogUserId   Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+}
+
+model dog_images {
+  id        Int      @default(autoincrement()) @id
+  width     String?
+  height    String?
+  url       String?
+  dogUserId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model dog_user {
+  id        Int      @default(autoincrement()) @id
+  email     String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
