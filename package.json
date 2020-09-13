@@ -64,6 +64,10 @@
     "lint": "eslint '*/**/*.{ts,tsx}' --quiet --fix",
     "generate:prisma": "cd ./prisma && npx prisma introspect && npx prisma generate",
     "format:prisma": "cd ./prisma && npx prisma format",
+    "migrate:prisma:create": "npx prisma migrate save --experimental",
+    "migrate:prisma:up": "npx prisma migrate up --experimental",
+    "migrate:prisma:down": "npx prisma migrate down 1 --experimental",
+    "prisma-studio": "npx prisma studio --experimental",
     "commit": "npx git-cz"
   },
   "husky": {
