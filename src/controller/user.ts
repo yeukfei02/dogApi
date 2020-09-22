@@ -1,6 +1,6 @@
 import * as Koa from 'koa';
 import * as jwt from 'jsonwebtoken';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
 
 import * as userService from '../service/user';
