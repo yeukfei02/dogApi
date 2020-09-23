@@ -1,6 +1,6 @@
 {
   "name": "dogApi",
-  "version": "1.0.0",
+  "version": "0.3.6",
   "main": "app.js",
   "repository": "https://github.com/yeukfei02/dogApi.git",
   "author": "Donald Wu <yeukfei02@gmail.com>",
@@ -51,6 +51,7 @@
     "moment-timezone": "^0.5.31",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
+    "standard-version": "^9.0.0",
     "ts-jest": "^26.1.0",
     "ts-node": "8.10.2",
     "ts-node-dev": "^1.0.0-pre.61",
@@ -68,7 +69,8 @@
     "migrate:prisma:up": "npx prisma migrate up --experimental",
     "migrate:prisma:down": "npx prisma migrate down 1 --experimental",
     "prisma-studio": "npx prisma studio --experimental",
-    "commit": "npx git-cz"
+    "commit": "npx git-cz",
+    "release": "standard-version"
   },
   "husky": {
     "hooks": {
