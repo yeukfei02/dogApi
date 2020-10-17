@@ -8,7 +8,7 @@ datasource postgresql {
 }
 
 model dog {
-  id          Int      @default(autoincrement()) @id
+  id          Int      @id @default(autoincrement())
   bredFor     String?
   breedGroup  String?
   height      Json?
@@ -23,7 +23,7 @@ model dog {
 }
 
 model dog_images {
-  id        Int      @default(autoincrement()) @id
+  id        Int      @id @default(autoincrement())
   width     String?
   height    String?
   url       String?
@@ -33,7 +33,7 @@ model dog_images {
 }
 
 model dog_user {
-  id        Int      @default(autoincrement()) @id
+  id        Int      @id @default(autoincrement())
   email     String
   password  String
   createdAt DateTime @default(now())
