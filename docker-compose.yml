@@ -24,6 +24,7 @@ services:
       - ./prisma/schema.sql:/docker-entrypoint-initdb.d/dump.sql
     ports:
       - 5432:5432
+    restart: always
     environment:
       POSTGRES_USER: donaldwu
       POSTGRES_PASSWORD: donaldwu
