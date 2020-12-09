@@ -1,6 +1,6 @@
 {
   "name": "dogApi",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "main": "app.js",
   "repository": "https://github.com/yeukfei02/dogApi.git",
   "author": "Donald Wu <yeukfei02@gmail.com>",
