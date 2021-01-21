@@ -27,7 +27,7 @@ export const getAllUser = async (): Promise<dog_user[]> => {
 };
 
 export const getUserById = async (id: number): Promise<dog_user> => {
-  const dogUser = await prisma.dog_user.findOne({
+  const dogUser = await prisma.dog_user.findUnique({
     where: {
       id: id,
     },
