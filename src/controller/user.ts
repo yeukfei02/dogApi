@@ -1,18 +1,23 @@
-import * as Koa from 'koa';
-import * as jwt from 'jsonwebtoken';
-import * as bcrypt from 'bcryptjs';
+import Koa from 'koa';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
 
-import * as userService from '../service/user';
+import {
+  getUserByEmail,
+  createUser,
+  getAllUser as getAllUserService,
+  getUserById as getUserByIdService,
+} from '../service/user';
 
 export const signup = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
   const email = ctx.request.body.email;
   const password = bcrypt.hashSync(ctx.request.body.password, 10);
 
   if (email && password) {
-    const record = await userService.getUserByEmail(email);
+    const record = await getUserByEmail(email);
     if (!record) {
-      await userService.createUser(email, password);
+      await createUser(email, password);
 
       ctx.response.status = 201;
       ctx.body = {
@@ -32,7 +37,7 @@ export const login = async (ctx: Koa.Context, next: () => Promise<any>): Promise
   const password = ctx.request.body.password;
 
   if (email && password) {
-    const user = await userService.getUserByEmail(email);
+    const user = await getUserByEmail(email);
     if (user) {
       const userPasswordFromDB = user.password;
 
@@ -66,7 +71,7 @@ export const login = async (ctx: Koa.Context, next: () => Promise<any>): Promise
 };
 
 export const getAllUser = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
-  const userList = await userService.getAllUser();
+  const userList = await getAllUserService();
 
   let result: any[] = [];
   if (userList) {
@@ -82,7 +87,7 @@ export const getAllUser = async (ctx: Koa.Context, next: () => Promise<any>): Pr
 
 export const getUserById = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
   const id = parseInt(ctx.params.id, 10);
-  const user = await userService.getUserById(id);
+  const user = await getUserByIdService(id);
 
   let result = {};
   if (user) {

@@ -1,7 +1,7 @@
-import * as Koa from 'koa';
+import Koa from 'koa';
 import axios from 'axios';
 
-import * as dogService from '../service/dog';
+import { getBreedsByName, createDog, createDogImages } from '../service/dog';
 
 const ROOT_URL = `https://api.thedogapi.com/v1`;
 
@@ -60,9 +60,9 @@ export const getAllBreeds = async (ctx: Koa.Context, next: () => Promise<any>): 
   const result = await getAllBreedsRequest(limit, page);
   if (result) {
     result.forEach(async (item: any, i: number) => {
-      const existingBreeds = await dogService.getBreedsByName(item.name);
+      const existingBreeds = await getBreedsByName(item.name);
       if (!existingBreeds) {
-        await dogService.createDog(item, dogUserId);
+        await createDog(item, dogUserId);
       }
     });
 
@@ -83,7 +83,7 @@ export const getAllDogImages = async (ctx: Koa.Context, next: () => Promise<any>
   const result = await getAllDogImagesRequest(limit, page);
   if (result) {
     result.forEach(async (item: any, i: number) => {
-      await dogService.createDogImages(item, dogUserId);
+      await createDogImages(item, dogUserId);
     });
 
     const formattedResult = result.map((item: any, i: number) => {
