@@ -5,11 +5,13 @@ dogApi
 documentation: https://documenter.getpostman.com/view/3827865/Szzn7H98?version=latest
 
 ## Requirement:
- - install yarn
- - install node (v12+)
- - install postgres
+
+- install yarn
+- install node (v12+)
+- install postgres
 
 ## Testing and run:
+
 ```
 $ yarn
 
@@ -27,15 +29,6 @@ $ yarn run lint
 ```
 
 ```
-// create db migration
-$ yarn run migrate:prisma:create
-
-// migrate up
-$ yarn run migrate:prisma:up
-
-// rollback a migration
-$ yarn run migrate:prisma:down
-
 every time table change needs to run:
 
 // update schema.prisma from existing database, generate artifacts (e.g. Prisma Client)
@@ -44,8 +37,8 @@ $ yarn run generate:prisma
 // format schema.prisma
 $ yarn run format:prisma
 
-// show experimental command
-$ npx prisma --experimental
+// show preview feature
+$ npx prisma --preview-feature
 ```
 
 ## Docker:

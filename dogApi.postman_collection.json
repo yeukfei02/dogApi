@@ -121,6 +121,21 @@
 				},
 				{
 					"name": "/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"console.log(\"jsonData = \", jsonData);",
+									"if (jsonData) {",
+									"    pm.environment.set(\"jwtToken\", jsonData.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -235,14 +250,18 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEyODBmZDQxLTFlNzUtNDhlZi04YmUwLWJlNWE0YWU4NzdiNyIsImlhdCI6MTU5MjY0MjI1MiwiZXhwIjoxNTkyNzI4NjUyfQ.kVeIiWtq1SM9nB05SD9TPWEj3fI1R2ij2ry6uQJDi30",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -358,14 +377,18 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEyODBmZDQxLTFlNzUtNDhlZi04YmUwLWJlNWE0YWU4NzdiNyIsImlhdCI6MTU5MjY0MjI1MiwiZXhwIjoxNTkyNzI4NjUyfQ.kVeIiWtq1SM9nB05SD9TPWEj3fI1R2ij2ry6uQJDi30"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -478,8 +501,7 @@
 					]
 				}
 			],
-			"description": "user",
-			"protocolProfileBehavior": {}
+			"description": "user"
 		},
 		{
 			"name": "dog",
@@ -487,14 +509,18 @@
 				{
 					"name": "/breeds/{dogUserId}",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEyODBmZDQxLTFlNzUtNDhlZi04YmUwLWJlNWE0YWU4NzdiNyIsImlhdCI6MTU5MjY0MjI1MiwiZXhwIjoxNTkyNzI4NjUyfQ.kVeIiWtq1SM9nB05SD9TPWEj3fI1R2ij2ry6uQJDi30",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "localhost:3000/api/dog/breeds/1",
 							"host": [
@@ -593,14 +619,18 @@
 				{
 					"name": "/images/{dogUserId}",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEyODBmZDQxLTFlNzUtNDhlZi04YmUwLWJlNWE0YWU4NzdiNyIsImlhdCI6MTU5MjY0MjI1MiwiZXhwIjoxNTkyNzI4NjUyfQ.kVeIiWtq1SM9nB05SD9TPWEj3fI1R2ij2ry6uQJDi30"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "localhost:3000/api/dog/images/1",
 							"host": [
@@ -697,9 +727,7 @@
 					]
 				}
 			],
-			"description": "dog",
-			"protocolProfileBehavior": {}
+			"description": "dog"
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
