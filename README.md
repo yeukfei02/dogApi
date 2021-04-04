@@ -2,17 +2,17 @@
 
 dogApi
 
-documentation: https://documenter.getpostman.com/view/3827865/Szzn7H98?version=latest
+documentation: <https://documenter.getpostman.com/view/3827865/Szzn7H98?version=latest>
 
-## Requirement:
+## Requirement
 
 - install yarn
 - install node (v12+)
 - install postgres
 
-## Testing and run:
+## Testing and run
 
-```
+```zsh
 $ yarn
 
 // development
@@ -28,7 +28,7 @@ $ yarn run test
 $ yarn run lint
 ```
 
-```
+```zsh
 every time table change needs to run:
 
 // update schema.prisma from existing database, generate artifacts (e.g. Prisma Client)
@@ -41,9 +41,9 @@ $ yarn run format:prisma
 $ npx prisma --preview-feature
 ```
 
-## Docker:
+## Docker
 
-```
+```zsh
 // build images and start container in one line
 docker-compose up -d --build
 
