@@ -1,55 +1,7 @@
 import Koa, { Next } from 'koa';
-import axios from 'axios';
 
 import { getBreedsByName, createDog, createDogImages } from '../service/dog';
-
-const ROOT_URL = `https://api.thedogapi.com/v1`;
-
-async function getAllBreedsRequest(limit: number, page: number) {
-  let data: any = {
-    headers: {
-      'x-api-key': process.env.DOG_API_API_KEY,
-    },
-  };
-
-  if (limit && page) {
-    data = {
-      params: {
-        limit: limit,
-        page: page,
-      },
-      headers: {
-        'x-api-key': process.env.DOG_API_API_KEY,
-      },
-    };
-  }
-
-  const response = await axios.get(`${ROOT_URL}/breeds`, data);
-  return response.data;
-}
-
-async function getAllDogImagesRequest(limit: number, page: number) {
-  let data: any = {
-    headers: {
-      'x-api-key': process.env.DOG_API_API_KEY,
-    },
-  };
-
-  if (limit && page) {
-    data = {
-      params: {
-        limit: limit,
-        page: page,
-      },
-      headers: {
-        'x-api-key': process.env.DOG_API_API_KEY,
-      },
-    };
-  }
-
-  const response = await axios.get(`${ROOT_URL}/images/search`, data);
-  return response.data;
-}
+import { getAllBreedsRequest, getAllDogImagesRequest } from '../request/dog';
 
 export const getAllBreeds = async (ctx: Koa.Context, next: Next): Promise<void> => {
   const dogUserId = parseInt(ctx.params.dogUserId, 10);
@@ -59,18 +11,30 @@ export const getAllBreeds = async (ctx: Koa.Context, next: Next): Promise<void> 
 
   const result = await getAllBreedsRequest(limit, page);
   if (result) {
-    result.forEach(async (item: any, i: number) => {
-      const existingBreeds = await getBreedsByName(item.name);
-      if (!existingBreeds) {
-        await createDog(item, dogUserId);
-      }
-    });
+    try {
+      for (let index = 0; index < result.length; index++) {
+        const item = result[index];
 
-    ctx.response.status = 200;
-    ctx.response.body = {
-      message: `get dog breeds`,
-      result: result,
-    };
+        const existingBreeds = await getBreedsByName(item.name);
+        if (!existingBreeds) {
+          await createDog(item, dogUserId);
+        }
+      }
+
+      ctx.response.status = 200;
+      ctx.response.body = {
+        message: `get dog breeds`,
+        result: result,
+      };
+    } catch (e) {
+      console.log('error = ', e);
+
+      ctx.response.status = 400;
+      ctx.response.body = {
+        message: `get dog breeds error`,
+        error: e.message,
+      };
+    }
   }
 };
 
@@ -82,23 +46,32 @@ export const getAllDogImages = async (ctx: Koa.Context, next: Next): Promise<voi
 
   const result = await getAllDogImagesRequest(limit, page);
   if (result) {
-    result.forEach(async (item: any, i: number) => {
-      await createDogImages(item, dogUserId);
-    });
+    try {
+      for (let index = 0; index < result.length; index++) {
+        const item = result[index];
+        await createDogImages(item, dogUserId);
+      }
 
-    const formattedResult = result.map((item: any, i: number) => {
-      const obj = {
-        width: item.width,
-        height: item.height,
-        url: item.url,
+      const formattedResult = result.map((item: any, i: number) => {
+        const obj = {
+          width: item.width,
+          height: item.height,
+          url: item.url,
+        };
+        return obj;
+      });
+
+      ctx.response.status = 200;
+      ctx.response.body = {
+        message: `get dog images`,
+        result: formattedResult,
       };
-      return obj;
-    });
-
-    ctx.response.status = 200;
-    ctx.response.body = {
-      message: `get dog images`,
-      result: formattedResult,
-    };
+    } catch (e) {
+      ctx.response.status = 200;
+      ctx.response.body = {
+        message: `get dog images error`,
+        error: e.message,
+      };
+    }
   }
 };

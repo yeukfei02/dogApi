@@ -7,7 +7,7 @@ documentation: <https://documenter.getpostman.com/view/3827865/Szzn7H98?version=
 ## Requirement
 
 - install yarn
-- install node (v12+)
+- install node (v14+)
 - install postgres
 
 ## Testing and run
@@ -26,19 +26,33 @@ $ yarn run test
 
 // use eslint and prettier to format code
 $ yarn run lint
-```
 
-```zsh
-every time table change needs to run:
+// generate schema.prisma and prisma client
+$ yarn run prisma:generate
 
-// update schema.prisma from existing database, generate artifacts (e.g. Prisma Client)
-$ yarn run generate:prisma
+// create migration file if schema.prisma changed
+$ yarn run prisma:migrate:dev
+
+// reset database
+$ yarn run prisma:migrate:reset
+
+// apply pending migrations in the production/staging database
+$ yarn run prisma:migrate:deploy
+
+// check migrations status in the production/staging database
+$ yarn run prisma:migrate:status
+
+// push schema.prisma state to database
+$ yarn run prisma:db:push
+
+// seed data to database
+$ yarn run prisma:db:seed
 
 // format schema.prisma
-$ yarn run format:prisma
+$ yarn run prisma:format
 
-// show preview feature
-$ npx prisma --preview-feature
+// open prisma studio
+$ yarn run prisma:studio
 ```
 
 ## Docker
