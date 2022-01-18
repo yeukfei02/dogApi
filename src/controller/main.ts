@@ -1,6 +1,6 @@
-import Koa from 'koa';
+import Koa, { Next } from 'koa';
 
-export const getMain = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
+export const getMain = async (ctx: Koa.Context, next: Next): Promise<void> => {
   ctx.response.status = 200;
   ctx.body = {
     message: 'dogApi',

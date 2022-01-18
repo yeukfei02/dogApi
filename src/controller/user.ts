@@ -1,4 +1,4 @@
-import Koa from 'koa';
+import Koa, { Next } from 'koa';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
@@ -10,7 +10,7 @@ import {
   getUserById as getUserByIdService,
 } from '../service/user';
 
-export const signup = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
+export const signup = async (ctx: Koa.Context, next: Next): Promise<void> => {
   const email = ctx.request.body.email;
   const password = bcrypt.hashSync(ctx.request.body.password, 10);
 
@@ -32,7 +32,7 @@ export const signup = async (ctx: Koa.Context, next: () => Promise<any>): Promis
   }
 };
 
-export const login = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
+export const login = async (ctx: Koa.Context, next: Next): Promise<void> => {
   const email = ctx.request.body.email;
   const password = ctx.request.body.password;
 
@@ -70,7 +70,7 @@ export const login = async (ctx: Koa.Context, next: () => Promise<any>): Promise
   }
 };
 
-export const getAllUser = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
+export const getAllUser = async (ctx: Koa.Context, next: Next): Promise<void> => {
   const userList = await getAllUserService();
 
   let result: any[] = [];
@@ -85,7 +85,7 @@ export const getAllUser = async (ctx: Koa.Context, next: () => Promise<any>): Pr
   };
 };
 
-export const getUserById = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
+export const getUserById = async (ctx: Koa.Context, next: Next): Promise<void> => {
   const id = parseInt(ctx.params.id, 10);
   const user = await getUserByIdService(id);
 

@@ -1,4 +1,4 @@
-import Koa from 'koa';
+import Koa, { Next } from 'koa';
 import axios from 'axios';
 
 import { getBreedsByName, createDog, createDogImages } from '../service/dog';
@@ -51,7 +51,7 @@ async function getAllDogImagesRequest(limit: number, page: number) {
   return response.data;
 }
 
-export const getAllBreeds = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
+export const getAllBreeds = async (ctx: Koa.Context, next: Next): Promise<void> => {
   const dogUserId = parseInt(ctx.params.dogUserId, 10);
 
   const limit = ctx.request.query.limit;
@@ -74,7 +74,7 @@ export const getAllBreeds = async (ctx: Koa.Context, next: () => Promise<any>): 
   }
 };
 
-export const getAllDogImages = async (ctx: Koa.Context, next: () => Promise<any>): Promise<void> => {
+export const getAllDogImages = async (ctx: Koa.Context, next: Next): Promise<void> => {
   const dogUserId = parseInt(ctx.params.dogUserId, 10);
 
   const limit = ctx.request.query.limit;
