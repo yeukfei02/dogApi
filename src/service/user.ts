@@ -12,17 +12,16 @@ export const createUser = async (email: string, password: string): Promise<void>
 };
 
 export const getUserByEmail = async (email: string): Promise<dog_user> => {
-  const dogUser = await prisma.dog_user.findMany({
+  const dogUser = await prisma.dog_user.findFirst({
     where: {
       email: email,
     },
-    take: 1,
   });
-  return dogUser[0];
+  return dogUser;
 };
 
 export const getAllUser = async (): Promise<dog_user[]> => {
-  const dogUserList = await prisma.dog_user.findMany();
+  const dogUserList = await prisma.dog_user.findMany({});
   return dogUserList;
 };
 

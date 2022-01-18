@@ -4,38 +4,42 @@ generator client {
 
 datasource postgresql {
   provider = "postgresql"
-  url      = env("DATABASE_DOCKER_URL")
+  url      = env("DATABASE_URL")
 }
 
 model dog {
   id          Int      @id @default(autoincrement())
-  bredFor     String?
-  breedGroup  String?
+  bred_for    String?
+  breed_group String?
   height      Json?
-  lifeSpan    String?
+  life_span   String?
   name        String?
   origin      String?
   temperament String?
   weight      Json?
-  dogUserId   Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now())
+  dog_user_id Int
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  dog_user    dog_user @relation(fields: [dog_user_id], references: [id])
 }
 
 model dog_images {
-  id        Int      @id @default(autoincrement())
-  width     String?
-  height    String?
-  url       String?
-  dogUserId Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+  url         String?
+  dog_user_id Int
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  width       Json?
+  height      Json?
+  dog_user    dog_user @relation(fields: [dog_user_id], references: [id])
 }
 
 model dog_user {
-  id        Int      @id @default(autoincrement())
-  email     String
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  id         Int          @id @default(autoincrement())
+  email      String
+  password   String
+  created_at DateTime     @default(now())
+  updated_at DateTime     @default(now())
+  dogs       dog[]
+  dog_images dog_images[]
 }

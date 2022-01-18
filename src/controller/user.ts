@@ -80,7 +80,7 @@ export const getAllUser = async (ctx: Koa.Context, next: Next): Promise<void> =>
 
   ctx.response.status = 200;
   ctx.body = {
-    message: 'get all user',
+    message: 'get users',
     users: result,
   };
 };

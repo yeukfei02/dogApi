@@ -1,6 +1,6 @@
 describe('main.test', () => {
   describe('test', () => {
-    test('test', async () => {
+    it('test', async () => {
       try {
         const result = 1 + 1;
         expect(result).toBe(2);
