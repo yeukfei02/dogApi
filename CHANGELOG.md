@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.11](https://github.com/yeukfei02/dogApi/compare/v0.3.10...v0.3.11) (2022-01-18)
+
+
+### Bug Fixes
+
+* 🐛 fix esModuleInterop ([7bc064c](https://github.com/yeukfei02/dogApi/commit/7bc064c319994c16c13ee0e0b9161b03e18c91d7))
+* 🐛 fix func ([29663a7](https://github.com/yeukfei02/dogApi/commit/29663a726dc63cf7ee69918a62341ff3ef097cf7))
+* 🐛 fix prisma and other func ([d812d84](https://github.com/yeukfei02/dogApi/commit/d812d84daa0e7cb0f79af4d431cdedb356171b1b))
+* 🐛 update dockerfile ([2b70210](https://github.com/yeukfei02/dogApi/commit/2b70210ecd217e604b0406b97dd4901ca0471d64))
+* 🐛 update prisma lib ([a1f0289](https://github.com/yeukfei02/dogApi/commit/a1f0289a589571811644274a9ca02af00ff444e5))
+
 ### [0.3.10](https://github.com/yeukfei02/dogApi/compare/v0.4.0...v0.3.10) (2020-12-09)
 
 ### [0.3.9](https://github.com/yeukfei02/dogApi/compare/v0.3.8...v0.3.9) (2020-10-17)
