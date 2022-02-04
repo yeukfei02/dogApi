@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.12](https://github.com/yeukfei02/dogApi/compare/v0.3.11...v0.3.12) (2022-02-04)
+
+
+### Features
+
+* 🎸 add index in prisma ([cd7c359](https://github.com/yeukfei02/dogApi/commit/cd7c359f55669ec25a8b9c78c74b83562ae11d7c))
+
 ### [0.3.11](https://github.com/yeukfei02/dogApi/compare/v0.3.10...v0.3.11) (2022-01-18)
 
 
