@@ -22,17 +22,17 @@ model dog {
   updated_at  DateTime @default(now())
   dog_user    dog_user @relation(fields: [dog_user_id], references: [id])
 
-  @@index([bred_for], name: "index_dog_on_bred_for")
-  @@index([breed_group], name: "index_dog_on_breed_group")
-  @@index([height], name: "index_dog_on_height")
-  @@index([life_span], name: "index_dog_on_life_span")
-  @@index([name], name: "index_dog_on_name")
-  @@index([origin], name: "index_dog_on_origin")
-  @@index([temperament], name: "index_dog_on_temperament")
-  @@index([weight], name: "index_dog_on_weight")
-  @@index([dog_user_id], name: "index_dog_on_dog_user_id")
-  @@index([created_at], name: "index_dog_on_created_at")
-  @@index([updated_at], name: "index_dog_on_updated_at")
+  @@index([bred_for], map: "index_dog_on_bred_for")
+  @@index([breed_group], map: "index_dog_on_breed_group")
+  @@index([created_at], map: "index_dog_on_created_at")
+  @@index([dog_user_id], map: "index_dog_on_dog_user_id")
+  @@index([height], map: "index_dog_on_height")
+  @@index([life_span], map: "index_dog_on_life_span")
+  @@index([name], map: "index_dog_on_name")
+  @@index([origin], map: "index_dog_on_origin")
+  @@index([temperament], map: "index_dog_on_temperament")
+  @@index([updated_at], map: "index_dog_on_updated_at")
+  @@index([weight], map: "index_dog_on_weight")
 }
 
 model dog_images {
@@ -45,12 +45,12 @@ model dog_images {
   height      Json?
   dog_user    dog_user @relation(fields: [dog_user_id], references: [id])
 
-  @@index([url], name: "index_dog_images_on_url")
-  @@index([width], name: "index_dog_images_on_width")
-  @@index([height], name: "index_dog_images_on_height")
-  @@index([dog_user_id], name: "index_dog_images_on_dog_user_id")
-  @@index([created_at], name: "index_dog_images_on_created_at")
-  @@index([updated_at], name: "index_dog_images_on_updated_at")
+  @@index([created_at], map: "index_dog_images_on_created_at")
+  @@index([dog_user_id], map: "index_dog_images_on_dog_user_id")
+  @@index([height], map: "index_dog_images_on_height")
+  @@index([updated_at], map: "index_dog_images_on_updated_at")
+  @@index([url], map: "index_dog_images_on_url")
+  @@index([width], map: "index_dog_images_on_width")
 }
 
 model dog_user {
@@ -62,8 +62,8 @@ model dog_user {
   dogs       dog[]
   dog_images dog_images[]
 
-  @@index([email], name: "index_dog_user_on_email")
-  @@index([password], name: "index_dog_user_on_password")
-  @@index([created_at], name: "index_dog_user_on_created_at")
-  @@index([updated_at], name: "index_dog_user_on_updated_at")
+  @@index([created_at], map: "index_dog_user_on_created_at")
+  @@index([email], map: "index_dog_user_on_email")
+  @@index([password], map: "index_dog_user_on_password")
+  @@index([updated_at], map: "index_dog_user_on_updated_at")
 }
