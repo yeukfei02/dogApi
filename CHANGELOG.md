@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.13](https://github.com/yeukfei02/dogApi/compare/v0.3.12...v0.3.13) (2022-02-23)
+
+
+### Bug Fixes
+
+* 🐛 update prisma lib ([8625bef](https://github.com/yeukfei02/dogApi/commit/8625bef521227806c14f4145262eb376df904ef6))
+
 ### [0.3.12](https://github.com/yeukfei02/dogApi/compare/v0.3.11...v0.3.12) (2022-02-04)
 
 
