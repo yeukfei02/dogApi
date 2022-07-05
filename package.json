@@ -47,7 +47,7 @@
     "eslint": "^8.7.0",
     "eslint-config-prettier": "^8.3.0",
     "git-cz": "^4.7.0",
-    "husky": "^4.2.5",
+    "husky": "^8.0.0",
     "jest": "^27.4.7",
     "prettier": "^2.5.1",
     "prisma": "^4.0.0",
@@ -64,6 +64,7 @@
     "build": "rimraf dist && tsc",
     "test": "jest --detectOpenHandles",
     "lint": "eslint '*/**/*.{ts,tsx}' --quiet --fix",
+    "format": "prettier --write '*/**/*.{ts,tsx}'",
     "prisma:generate": "npx prisma db pull && npx prisma generate",
     "prisma:migrate:dev": "npx prisma migrate dev",
     "prisma:migrate:reset": "npx prisma migrate reset",
@@ -74,13 +75,8 @@
     "prisma:format": "npx prisma format",
     "prisma:studio": "npx prisma studio",
     "commit": "git-cz",
-    "release": "standard-version"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint && yarn run prisma:format",
-      "pre-push": "yarn lint && yarn run prisma:format"
-    }
+    "release": "standard-version",
+    "prepare": "husky install"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
