@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.14](https://github.com/yeukfei02/dogApi/compare/v0.3.13...v0.3.14) (2022-07-05)
+
+
+### Bug Fixes
+
+* 🐛 fix husky and format script ([88e1ab5](https://github.com/yeukfei02/dogApi/commit/88e1ab592cd77539f284773e67565f54e057d8b5))
+* 🐛 fix pre commit ([686a471](https://github.com/yeukfei02/dogApi/commit/686a4716e2212558c6e82ac9098d7f9c86009652))
+* 🐛 update prisma lib ([1656cea](https://github.com/yeukfei02/dogApi/commit/1656cea41e570fb0448aab945f3b2185be7daeca))
+* 🐛 update prisma lib ([e3bc1e0](https://github.com/yeukfei02/dogApi/commit/e3bc1e0566bf2ffa89c70f3334b572e0e6725691))
+
 ### [0.3.13](https://github.com/yeukfei02/dogApi/compare/v0.3.12...v0.3.13) (2022-02-23)
 
 
